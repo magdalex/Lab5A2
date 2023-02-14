@@ -30,7 +30,7 @@ namespace Assignment2
         HttpClient client = new HttpClient();
         public MainWindow()
         {
-            client.BaseAddress = new Uri("https://localhost:7281/api/");
+            client.BaseAddress = new Uri("https://localhost:7295/api/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));

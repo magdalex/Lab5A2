@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\Users\Kazic\Desktop\School\Desktop Application Development\Labs\New folder\Lab5A2\Assignment2\obj\Debug\net6.0-windows\
+C:\Users\Kazic\Desktop\School\Desktop Application Development\Labs\New folder\Lab5A2\Assignment2\obj\Release\net6.0-windows\
 Assignment2
 none
 false
-TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+TRACE;RELEASE;NET;NET6_0;NETCOREAPP
 C:\Users\Kazic\Desktop\School\Desktop Application Development\Labs\New folder\Lab5A2\Assignment2\App.xaml
 11407045341
 
@@ -16,5 +16,5 @@ C:\Users\Kazic\Desktop\School\Desktop Application Development\Labs\New folder\La
 198-953305349
 MainWindow.xaml;
 
-False
+True
 
