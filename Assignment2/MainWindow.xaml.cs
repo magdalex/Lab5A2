@@ -30,21 +30,22 @@ namespace Assignment2
         HttpClient client = new HttpClient();
         public MainWindow()
         {
-            client.BaseAddress = new Uri("https://localhost:7295/api/");
+            client.BaseAddress = new Uri("https://localhost:7295/api/"); //this is the base path for me that got auto-generated-- the port number may be different for you
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             InitializeComponent();
         }
 
+        //this establishes connection to your database
         private void connectButton_Click(object sender, RoutedEventArgs e)
         {
             try
-            { //Exception handling
-                string connectionString = "Data Source=DESKTOP-VMP9DN3;Initial Catalog=Assignment1;Integrated Security=True";
+            {
+                string connectionString = "Data Source=DESKTOP-VMP9DN3;Initial Catalog=Assignment1;Integrated Security=True"; //change this to your connection string!
                 con = new SqlConnection(connectionString);
                 con.Open();
-                MessageBox.Show("Connection established properly.");
+                MessageBox.Show("Connection established successfully.");
                 con.Close();
 
                 refreshDataButton_Click(sender, e);
@@ -55,64 +56,107 @@ namespace Assignment2
             }
         }
 
-        private void refreshDataButton_Click(object sender, RoutedEventArgs e) //works well
+        //SELECT
+        //this can be used to refresh the datagrid in case it doesn't automatically do that
+        private void refreshDataButton_Click(object sender, RoutedEventArgs e) //this method seems to work
         {
-            this.RefreshProducts();
+            try
+            {
+                this.RefreshProducts(); //calls the refresh method
+            }
+            catch
+            {
+                MessageBox.Show("Could not refresh inventory.");
+            }
         }
 
-        private async void RefreshProducts() //works well
+        private async void RefreshProducts() //this method works
         {
 
-            var response = await client.GetStringAsync("Product/GetAllProd");
-            var products = JsonConvert.DeserializeObject<Response>(response).listProduct;
+            var response = await client.GetStringAsync("Product/GetAllProd"); //this is the path that gets called
+            var products = JsonConvert.DeserializeObject<Response>(response).listProduct; //maps fields of json to response class
            
-            dataGrid.ItemsSource = products;
+            dataGrid.ItemsSource = products; //puts it straight into the datagrid
             
         }
 
-        private async void insertButton_Click(object sender, RoutedEventArgs e) //works well
+        //INSERT
+        //this allows new items to be added to the database table
+        private async void insertButton_Click(object sender, RoutedEventArgs e) //this method seems to work
         {
+            //add code to check to see if the product exists first or to make sure that we don't insert an empty object
+            try
+            {
+                var product = new Product()
+                {
+                    productID = int.Parse(productID.Text),
+                    productName = productName.Text,
+                    price = float.Parse(price.Text),
+                    kgInventory = int.Parse(amountKG.Text)
+                };
 
-            var product = new Product() {
-                productID = int.Parse(productID.Text),
-                productName = productName.Text,
-                price = float.Parse(price.Text),
-                kgInventory = int.Parse(amountKG.Text)
-            };
+                var response = await client.PostAsJsonAsync("Product/InsertProd", product);
+                
+                MessageBox.Show("Inserted product successfully into the database.");
 
-            var response = await client.PostAsJsonAsync("Product/InsertProd", product);
-            MessageBox.Show("Inserted product successfully into the database.");
-            
 
-            refreshDataButton_Click(sender, e);
+                refreshDataButton_Click(sender, e); //this auto clicks the refresh button at the end of the operation so the user doesnt have to manually press it
+            }
+            catch
+            {
+                MessageBox.Show("Insert operation failed.");
+            }
 
         }
 
-        private async void updateButton_Click(object sender, RoutedEventArgs e) //does not work
+        //UPDATE
+        //this allows existing items to be updated in the database table
+        private async void updateButton_Click(object sender, RoutedEventArgs e) //this method does NOT work-- it will show message saying it updated successfully, but upon refresh it does not update the item
         {
-
-            var product = new Product()
+            //add code to check to see if the product exists first-- if you write anything, whether it is accurate to existing items or not, it will say it was updated successfully.
+            try
             {
-                productID = int.Parse(productID.Text),
-                productName = productName.Text,
-                price = float.Parse(price.Text),
-                kgInventory = int.Parse(amountKG.Text)
-            };
+                var product = new Product()
+                {
+                    productID = int.Parse(productID.Text),
+                    productName = productName.Text,
+                    price = float.Parse(price.Text),
+                    kgInventory = int.Parse(amountKG.Text)
+                };
 
-            var response = await client.PutAsJsonAsync("Product/UpdateProd/" + product.productID, product);
-            MessageBox.Show("Updated product successfully in the database.");
+                var response = await client.PutAsJsonAsync("Product/UpdateProd/" + product.productID, product);
+                
+                MessageBox.Show("Updated product successfully in the database.");
+
+                refreshDataButton_Click(sender, e); //this auto clicks the refresh button at the end of the operation so the user doesnt have to manually press it
+            }
+            catch
+            {
+                MessageBox.Show("Update operation failed.");
+            }
         }
 
-        private async void deleteButton_Click(object sender, RoutedEventArgs e) //works well
+        //DELETE
+        //this allows deleting existing items in the database table
+        private async void deleteButton_Click(object sender, RoutedEventArgs e) //this method seems to work well
         {
-
-            var product = new Product()
+            //add code to check to see if the product exists first-- if you write anything in productID, whether it exists already or not, it will say it was deleted successfully.
+            try
             {
-                productID = int.Parse(productID.Text),
-            };
+                var product = new Product()
+                {
+                    productID = int.Parse(productID.Text)
+                };
 
-            var response = await client.DeleteAsync("Product/DeleteProd/" + product.productID);
-            MessageBox.Show("Deleted product from database.");
+                var response = await client.DeleteAsync("Product/DeleteProd/" + product.productID);
+                MessageBox.Show("Deleted product from database.");
+
+                refreshDataButton_Click(sender, e); //this auto clicks the refresh button at the end of the operation so the user doesnt have to manually press it
+            }
+            catch
+            {
+                MessageBox.Show("Delete operation failed.");
+            }
         }
 
     }
