@@ -111,7 +111,7 @@ namespace Assignment2
 
         //UPDATE
         //this allows existing items to be updated in the database table
-        private async void updateButton_Click(object sender, RoutedEventArgs e) //this method does NOT work-- it will show message saying it updated successfully, but upon refresh it does not update the item
+        private async void updateButton_Click(object sender, RoutedEventArgs e) //works
         {
             //add code to check to see if the product exists first-- if you write anything, whether it is accurate to existing items or not, it will say it was updated successfully.
             try
