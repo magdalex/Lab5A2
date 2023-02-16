@@ -41,7 +41,7 @@ namespace Assignment2
         {
             try
             {
-                string connectionString = "Data Source=DESKTOP-5DGA5O7\\SQLEXPRESS;Initial Catalog=DesptopAppDevAssignment1;Integrated Security=True"; //change this to your connection string!
+                string connectionString = "Data Source=DESKTOP-V50PKCU\\SQLEXPRESS;Initial Catalog=Assignment2;Integrated Security=True;MultipleActiveResultSets=True"; //change this to your connection string!
                 con = new SqlConnection(connectionString);
                 con.Open();
                 MessageBox.Show("Connection established successfully.");

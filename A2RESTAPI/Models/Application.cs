@@ -79,10 +79,32 @@ namespace A2RESTAPI.Models
 
             return response;
         }
-        /*public Response ViewCartTotal(SqlConnection con) 
+
+
+        /*
+
+        public Response ViewCartTotal(SqlConnection con)
         {
-            //To be developped
-        }*/
+
+                query = "SELECT sum(KG_Cart*Price) from cartTable";
+                SqlCommand cmd = new SqlCommand(query, con);
+                SqlDataReader sqlReader = cmd.ExecuteReader();
+                try
+                {
+                    while (sqlReader.Read())
+                    {
+                        string totalSales = Convert.ToString(Math.Round(Convert.ToDecimal(sqlReader[0]), 2));
+                    }
+                }
+                return totalSales
+
+                }
+            }
+        }
+
+        */
+
+
         //SELECT BY ID
         public Response GetAllProductByID(SqlConnection con, int productID)
         {
