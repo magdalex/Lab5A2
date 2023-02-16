@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Assignment2.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Assignment2.Models
+namespace A2RESTAPI.Models
 {
     public class Response
     {
         public int statusCode { get; set; }
         public string statusMessage { get; set; }
         public Product product { get; set; }
+        public Cart cart { get; set; }
         public List<Product> listProduct { get; set; }
+        public List<Cart> listCart { get; set; }
     }
 }

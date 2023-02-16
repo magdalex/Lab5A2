@@ -30,7 +30,7 @@ namespace A2RESTAPI.Controllers
 
         //SELECT BY ID
         [HttpGet]
-        [Route("GetAllProdByID/{id}")]
+        [Route("GetAllProdByID/{productID}")]
         public Response GetAllProdByID(int id)
         {
             SqlConnection con = new SqlConnection(configuration1.GetConnectionString("productCon").ToString());
@@ -54,7 +54,7 @@ namespace A2RESTAPI.Controllers
 
         //UPDATE
         [HttpPut]
-        [Route("UpdateProd")]
+        [Route("UpdateProd/{productID}")]
         public Response UpdateProd(Product product)
         {
             SqlConnection con = new SqlConnection(configuration1.GetConnectionString("productCon").ToString());
@@ -66,7 +66,7 @@ namespace A2RESTAPI.Controllers
 
         //DELETE
         [HttpDelete]
-        [Route("DeleteProd/{id}")]
+        [Route("DeleteProd/{productID}")]
         public Response DeleteProd(int id)
         {
             SqlConnection con = new SqlConnection(configuration1.GetConnectionString("productCon").ToString());

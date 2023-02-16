@@ -1,4 +1,5 @@
-﻿using Assignment2.Models;
+﻿using A2RESTAPI.Models;
+using Assignment2.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace Assignment2
         {
             try
             {
-                string connectionString = "Data Source=DESKTOP-VMP9DN3;Initial Catalog=Assignment1;Integrated Security=True"; //change this to your connection string!
+                string connectionString = "Data Source=DESKTOP-5DGA5O7\\SQLEXPRESS;Initial Catalog=DesptopAppDevAssignment1;Integrated Security=True"; //change this to your connection string!
                 con = new SqlConnection(connectionString);
                 con.Open();
                 MessageBox.Show("Connection established successfully.");
@@ -73,7 +74,7 @@ namespace Assignment2
         private async void RefreshProducts() //this method works
         {
 
-            var response = await client.GetStringAsync("Product/GetAllProd"); //this is the path that gets called
+            var response = await client.GetStringAsync("Product/GetAllProd/"); //this is the path that gets called
             var products = JsonConvert.DeserializeObject<Response>(response).listProduct; //maps fields of json to response class
            
             dataGrid.ItemsSource = products; //puts it straight into the datagrid
@@ -95,7 +96,7 @@ namespace Assignment2
                     kgInventory = int.Parse(amountKG.Text)
                 };
 
-                var response = await client.PostAsJsonAsync("Product/InsertProd", product);
+                var response = await client.PostAsJsonAsync("Product/InsertProd/", product);
                 
                 MessageBox.Show("Inserted product successfully into the database.");
 
@@ -116,15 +117,13 @@ namespace Assignment2
             //add code to check to see if the product exists first-- if you write anything, whether it is accurate to existing items or not, it will say it was updated successfully.
             try
             {
-                var product = new Product()
-                {
-                    productID = int.Parse(productID.Text),
-                    productName = productName.Text,
-                    price = float.Parse(price.Text),
-                    kgInventory = int.Parse(amountKG.Text)
-                };
+                Product product = new Product();
+                product.productID = int.Parse(productID.Text);
+                product.productName = productName.Text;
+                product.price = float.Parse(price.Text);
+                product.kgInventory = int.Parse(amountKG.Text);
 
-                var response = await client.PutAsJsonAsync("Product/UpdateProd/" + product.productID, product);
+                HttpResponseMessage response = await client.PutAsJsonAsync<Product> ("Product/UpdateProd/"+ product.productID, product);
                 
                 MessageBox.Show("Updated product successfully in the database.");
 
@@ -159,5 +158,11 @@ namespace Assignment2
             }
         }
 
+        private void goToSales_Click(object sender, RoutedEventArgs e)
+        {
+            Sales sales = new Sales();
+            this.Visibility = Visibility.Hidden;
+            sales.Show();
+        }
     }
 }

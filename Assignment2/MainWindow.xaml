@@ -21,5 +21,7 @@
         <Button x:Name="updateButton" Content="UPDATE" HorizontalAlignment="Left" Margin="655,140,0,0" VerticalAlignment="Top" Click="updateButton_Click"/>
         <Button x:Name="deleteButton" Content="DELETE" HorizontalAlignment="Left" Margin="654,176,0,0" VerticalAlignment="Top" Click="deleteButton_Click"/>
         <Button x:Name="connectButton" Content="CONNECT" HorizontalAlignment="Left" Margin="646,30,0,0" VerticalAlignment="Top" Click="connectButton_Click"/>
+        <Button x:Name="addToCart" Content="Add to Cart" HorizontalAlignment="Left" Margin="616,227,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="goToSales" Content="Go to Sales" HorizontalAlignment="Left" Margin="698,227,0,0" VerticalAlignment="Top" Click="goToSales_Click"/>
     </Grid>
 </Window>
