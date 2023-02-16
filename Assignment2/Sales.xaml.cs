@@ -84,7 +84,7 @@ namespace Assignment2
 
         private void  OkToPay_Click(object sender, RoutedEventArgs e)
         {
-            var response = await client.DeleteAsync("Cart/PayAndClearCart/");
+           // var response = await client.DeleteAsync("Cart/PayAndClearCart/");
 
             MessageBox.Show("Inserted product successfully into the database.");
 

@@ -79,10 +79,10 @@ namespace A2RESTAPI.Models
 
             return response;
         }
-        public Response ViewCartTotal(SqlConnection con) 
+        /*public Response ViewCartTotal(SqlConnection con) 
         {
             //To be developped
-        }
+        }*/
         //SELECT BY ID
         public Response GetAllProductByID(SqlConnection con, int productID)
         {

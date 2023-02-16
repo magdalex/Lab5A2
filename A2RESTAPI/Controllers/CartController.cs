@@ -28,7 +28,7 @@ namespace A2RESTAPI.Controllers
         }
 
         //View cart ALL
-        [HttpGet]
+        /*[HttpGet]
         [Route("ViewCartTotal")]
         public Response ViewCartTotal()
         {
@@ -37,7 +37,7 @@ namespace A2RESTAPI.Controllers
             Application apl = new Application();
             response = apl.ViewCartTotal(con);
             return response;
-        }
+        }*/
 
         //INSERT
         [HttpPost]
