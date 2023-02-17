@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using Xceed.Wpf.Toolkit;
 
 namespace A2RESTAPI.Models
 {
@@ -46,7 +47,7 @@ namespace A2RESTAPI.Models
         public Response ViewAllCart(SqlConnection con)
         {
             Response response = new Response();
-            SqlDataAdapter da = new SqlDataAdapter("select * ,KG_Cart*Price AS Line_Total from cartTable", con);
+            SqlDataAdapter da = new SqlDataAdapter("select *  from cartTable", con);
             DataTable dt = new DataTable();
             List<Cart> listCart = new List<Cart>();
             da.Fill(dt);
@@ -59,6 +60,7 @@ namespace A2RESTAPI.Models
                     cart.productName = (string)dt.Rows[i]["Product_Name"];
                     cart.price = float.Parse(dt.Rows[i]["Price"].ToString());
                     cart.kgCart = (int)dt.Rows[i]["KG_Cart"];
+                    cart.lineTotal = float.Parse(dt.Rows[i]["line_Total"].ToString());
 
                     listCart.Add(cart);
                 }
@@ -67,7 +69,7 @@ namespace A2RESTAPI.Models
             if (listCart.Count > 0)
             {
                 response.statusCode = 200;
-                response.statusMessage = "Cart Retrieve Perfectly";
+                response.statusMessage = "Cart Retrieved Perfectly";
                 response.listCart = listCart;
             }
             else // Only works if your data table is empty or your connection fails
@@ -79,10 +81,26 @@ namespace A2RESTAPI.Models
 
             return response;
         }
-        public Response ViewCartTotal(SqlConnection con) 
+        public Response ViewCartTotal(SqlConnection con)
         {
-            //To be developped
-        }
+            con.Open();
+                Response response = new Response();
+                string query = "SELECT sum(line_Total) from cartTable";
+                SqlCommand cmd = new SqlCommand(query, con);
+                SqlDataReader sqlReader = cmd.ExecuteReader();
+            try
+            {
+                while (sqlReader.Read())
+                {
+                    response.finalPrice = (float)(Math.Round(Convert.ToDecimal(sqlReader[0]), 2));
+                }
+            }
+            catch { }                           
+
+            return response;
+            con.Close();
+        }        
+
         //SELECT BY ID
         public Response GetAllProductByID(SqlConnection con, int productID)
         {
@@ -147,22 +165,20 @@ namespace A2RESTAPI.Models
             cmd.Parameters.AddWithValue("@product_Name", cart.productName);
             cmd.Parameters.AddWithValue("@Price", cart.price);
             cmd.Parameters.AddWithValue("@KG_Cart", cart.kgCart);
-            
-            /*string sql1 = "select KG_Inventory from productTable where product_ID ="+ cart.productID);
+            int i=0 ;
+            string sql1 = "select KG_Inventory from productTable where product_ID ="+ cart.productID;
             SqlCommand command1 = new SqlCommand(sql1, con);
             SqlDataReader reader1 = command1.ExecuteReader();
             reader1.Read();
             int kgInventory = (int)Convert.ToInt64(reader1["KG_Inventory"]);
-            int kgCart = cart.productID;
-
+            int kgCart = cart.kgCart;
+          
             if (kgInventory >= kgCart)
             {
                 cmd.ExecuteNonQuery();
-            }        
-            con.Close();
+                i++;
+            }
 
-            con.Open();*/
-            int i = cmd.ExecuteNonQuery();
             con.Close();
 
             if (i > 0)

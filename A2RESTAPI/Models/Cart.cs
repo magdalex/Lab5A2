@@ -6,6 +6,6 @@
         public string productName { get; set; }
         public float price { get; set; }
         public int kgCart { get; set; }
-        public float LineTotal { get; set; }
+        public float lineTotal { get; set; }
     }
 }

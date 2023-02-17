@@ -109,6 +109,34 @@ namespace Assignment2
             }
 
         }
+        //Add to Cart
+        //this allows new items to be added to the Cart table
+        private async void addToCart_Click(object sender, RoutedEventArgs e) //this method seems to work
+        {
+            //add code to check to see if the product exists first or to make sure that we don't insert an empty object
+            try
+            {
+                var cart = new Cart()
+                {
+                    productID = int.Parse(productID.Text),
+                    productName = productName.Text,
+                    price = float.Parse(price.Text),
+                    kgCart = int.Parse(amountKG.Text)
+                };
+
+                var response = await client.PostAsJsonAsync("Cart/AddToCart/", cart);
+
+                MessageBox.Show("Added product successfully into the cart.");
+
+
+                refreshDataButton_Click(sender, e); //this auto clicks the refresh button at the end of the operation so the user doesnt have to manually press it
+            }
+            catch
+            {
+                MessageBox.Show("Insert operation failed.");
+            }
+
+        }
 
         //UPDATE
         //this allows existing items to be updated in the database table
@@ -164,5 +192,6 @@ namespace Assignment2
             this.Visibility = Visibility.Hidden;
             sales.Show();
         }
+
     }
 }

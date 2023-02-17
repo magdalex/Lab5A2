@@ -41,13 +41,14 @@ namespace Assignment2
         {
             try
             {
-                string connectionString = "Data Source=DESKTOP-5DGA5O7\\SQLEXPRESS;Initial Catalog=DesptopAppDevAssignment1;Integrated Security=True"; //change this to your connection string!
+                string connectionString = "Data Source=DESKTOP-5DGA5O7\\SQLEXPRESS;Initial Catalog=DesptopAppDevAssignment1;Integrated Security=True;MultipleActiveResultSets=True"; //change this to your connection string!
                 con = new SqlConnection(connectionString);
                 con.Open();
                 MessageBox.Show("Connection established successfully.");
                 con.Close();
 
                 refreshDataButton_Click(sender, e);
+               
             }
             catch (SqlException ex)
             {
@@ -58,7 +59,8 @@ namespace Assignment2
         {
             try
             {
-                this.RefreshCart(); 
+                this.RefreshCart();
+                this.ViewCartTotal();
             }
             catch
             {
@@ -74,6 +76,15 @@ namespace Assignment2
             cartGrid.ItemsSource = cart; 
 
         }
+        private async void ViewCartTotal() 
+        {
+
+            var response = await client.GetStringAsync("Cart/ViewCartTotal/");
+            var cartTotal = JsonConvert.DeserializeObject<Response>(response).finalPrice;
+            
+            totalSales.Text = cartTotal.ToString();
+
+        }
 
         private void goBackToAdmin_Click(object sender, RoutedEventArgs e)
         {
@@ -82,11 +93,11 @@ namespace Assignment2
             admin.Show();
         }
 
-        private void  OkToPay_Click(object sender, RoutedEventArgs e)
+        private async void OkToPay_Click(object sender, RoutedEventArgs e)
         {
             var response = await client.DeleteAsync("Cart/PayAndClearCart/");
 
-            MessageBox.Show("Inserted product successfully into the database.");
+            MessageBox.Show("Payment Success");
 
             refreshDataButton_Click(sender, e);
         }

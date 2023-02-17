@@ -26,7 +26,7 @@ namespace A2RESTAPI.Controllers
             response = apl.ViewAllCart(con);
             return response;
         }
-
+        
         //View cart ALL
         [HttpGet]
         [Route("ViewCartTotal")]
@@ -38,7 +38,7 @@ namespace A2RESTAPI.Controllers
             response = apl.ViewCartTotal(con);
             return response;
         }
-
+        
         //INSERT
         [HttpPost]
         [Route("AddToCart")]

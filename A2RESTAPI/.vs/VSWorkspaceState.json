@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Models"
   ],
-  "SelectedNode": "\\A2RESTAPI.sln",
+  "SelectedNode": "\\Models\\Application.cs",
   "PreviewInSolutionExplorer": false
 }
