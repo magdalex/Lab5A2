@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\-_-\\Downloads\\Lab5A2-1\\A2RESTAPI\\A2RESTAPI.csproj": {}
+    "C:\\Users\\jklpp\\OneDrive\\Desktop\\Lab5A2\\A2RESTAPI\\A2RESTAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\-_-\\Downloads\\Lab5A2-1\\A2RESTAPI\\A2RESTAPI.csproj": {
+    "C:\\Users\\jklpp\\OneDrive\\Desktop\\Lab5A2\\A2RESTAPI\\A2RESTAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\-_-\\Downloads\\Lab5A2-1\\A2RESTAPI\\A2RESTAPI.csproj",
+        "projectUniqueName": "C:\\Users\\jklpp\\OneDrive\\Desktop\\Lab5A2\\A2RESTAPI\\A2RESTAPI.csproj",
         "projectName": "A2RESTAPI",
-        "projectPath": "C:\\Users\\-_-\\Downloads\\Lab5A2-1\\A2RESTAPI\\A2RESTAPI.csproj",
-        "packagesPath": "C:\\Users\\-_-\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\-_-\\Downloads\\Lab5A2-1\\A2RESTAPI\\obj\\",
+        "projectPath": "C:\\Users\\jklpp\\OneDrive\\Desktop\\Lab5A2\\A2RESTAPI\\A2RESTAPI.csproj",
+        "packagesPath": "C:\\Users\\jklpp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jklpp\\OneDrive\\Desktop\\Lab5A2\\A2RESTAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\-_-\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jklpp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -72,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

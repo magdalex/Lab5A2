@@ -165,14 +165,14 @@ namespace A2RESTAPI.Models
             cmd.Parameters.AddWithValue("@product_Name", cart.productName);
             cmd.Parameters.AddWithValue("@Price", cart.price);
             cmd.Parameters.AddWithValue("@KG_Cart", cart.kgCart);
-            int i=0 ;
+
             string sql1 = "select KG_Inventory from productTable where product_ID ="+ cart.productID;
             SqlCommand command1 = new SqlCommand(sql1, con);
             SqlDataReader reader1 = command1.ExecuteReader();
             reader1.Read();
             int kgInventory = (int)Convert.ToInt64(reader1["KG_Inventory"]);
             int kgCart = cart.kgCart;
-          
+            int i = 0;
             if (kgInventory >= kgCart)
             {
                 cmd.ExecuteNonQuery();

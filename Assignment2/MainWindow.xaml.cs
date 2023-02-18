@@ -126,7 +126,7 @@ namespace Assignment2
 
                 var response = await client.PostAsJsonAsync("Cart/AddToCart/", cart);
 
-                MessageBox.Show("Added product successfully into the cart.");
+                    MessageBox.Show("Added product successfully into the cart.");
 
 
                 refreshDataButton_Click(sender, e); //this auto clicks the refresh button at the end of the operation so the user doesnt have to manually press it

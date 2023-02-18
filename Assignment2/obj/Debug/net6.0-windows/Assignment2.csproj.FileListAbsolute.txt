@@ -158,3 +158,4 @@ C:\Users\jklpp\OneDrive\Desktop\Lab5A2-dennis-branch\Assignment2\obj\Debug\net6.
 C:\Users\jklpp\OneDrive\Desktop\Lab5A2-dennis-branch\Assignment2\obj\Debug\net6.0-windows\Assignment2.pdb
 C:\Users\jklpp\OneDrive\Desktop\Lab5A2-dennis-branch\Assignment2\obj\Debug\net6.0-windows\Assignment2.genruntimeconfig.cache
 C:\Users\jklpp\OneDrive\Desktop\Lab5A2-dennis-branch\Assignment2\obj\Debug\net6.0-windows\ref\Assignment2.dll
+C:\Users\jklpp\OneDrive\Desktop\Lab5A2\Assignment2\obj\Debug\net6.0-windows\Sales.baml

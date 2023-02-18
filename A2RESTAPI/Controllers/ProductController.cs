@@ -30,7 +30,7 @@ namespace A2RESTAPI.Controllers
 
         //SELECT BY ID
         [HttpGet]
-        [Route("GetAllProdByID/{productID}")]
+        [Route("GetAllProdByID/{id}")]
         public Response GetAllProdByID(int id)
         {
             SqlConnection con = new SqlConnection(configuration1.GetConnectionString("productCon").ToString());
@@ -66,7 +66,7 @@ namespace A2RESTAPI.Controllers
 
         //DELETE
         [HttpDelete]
-        [Route("DeleteProd/{productID}")]
+        [Route("DeleteProd/{id}")]
         public Response DeleteProd(int id)
         {
             SqlConnection con = new SqlConnection(configuration1.GetConnectionString("productCon").ToString());
